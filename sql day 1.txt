@@ -1,0 +1,898 @@
+create table employee
+(
+empno number(10),
+emoname char(25),
+empcity char(25)
+);
+
+select * from employee;
+
+insert into employee values (1001 , 'Anuj' , 'Mumbai');
+insert into employee values ( 1002 , 'Anamika' , 'Delhi');
+insert into employee values ( 1003 , 'Monika' , 'Pune');
+insert into employee values ( 1004 , 'Karan' , 'Noida');
+
+insert into employee (empno , empcity) values (1005 , ' Hyderabad');
+
+create table participant 
+(
+pno number(10) constraint pk_part1 primary key,
+pname char(30) not null,
+emailid char(30) constraint uk_part_1 unique,
+pcity char(30) default 'Hyderabad',
+age number(10) constraint ck_part check(age>0),
+remarks varchar(250)
+)
+
+insert into participant values (1001 , 'Vinayak', 'vk@gmail.com', 'Mumbai',18,'Good Praticipant');
+insert into participant values (1002 , 'Arjun', 'a@gmail.com', 'Mumbai',18,'Good Praticipant');
+insert into participant values (1003 , 'Nandini', null, 'Delhi',19,'Good Praticipant');
+insert into participant values (1004 , 'Kushal', null, 'Delhi',19,'Good Praticipant');
+insert into participant values (1005 , 'Vikas', 'vikas@gmail.com', default,null,'Good Praticipant');
+select * from participant; 
+
+insert into participant ( pno, pname , age) values (1006,'Madhuri',20);
+
+select * from participant; 
+
+create table participant_skillset
+(
+sn number(10) primary key,
+pno number(10) constraint fk_pss1 references participant(pno),
+skill varchar(50),
+expInYears number(10)
+);
+
+insert into participant_skillset values (1, 1001 , 'Java',2);
+insert into participant_skillset values (2, null , 'SQL',1);
+
+alter table participant_skillset
+add efficiencylevel varchar(30);
+
+alter table participant_skillset 
+modify efficiencylevel number(10);
+
+desc participant_skillset;
+
+alter table participant_skillset 
+drop column efficiencylevel;
+
+alter table participant 
+drop constraint pk_part;
+
+alter table participant 
+drop constraint ck_part2 check(age>0);
+
+alter table participant 
+add constraint pk_1 primary key(pno);
+
+alter table participant_skillset
+rename expInYears to expYr;
+
+
+select*from employee 
+where empcity = 'Delhi';
+
+select*from participant
+where lower(pcity) != 'hyderabad';
+
+select pname , pcity , age from participant
+where age <20;
+
+insert into participant values (1008,'sagar', 'sagaryahoo.co.in','Noida',26,'regular');
+insert into participant values (1009,'Vikas', 'VK@hotmail.com','Bangalore',30,'Active participant');
+
+select *from participant
+where age between 20 and 30;
+
+select pname , pcity from participant
+where  lower(pcity) in ('mumbai','bangalore','noida');
+
+select pname ,pcity from participant
+where pname like '_a%';
+
+select pname,pcity from participant
+where age is null;
+
+update participant
+set age = 29
+where pno =1009;
+
+update participant 
+set age =25 , pcity ='Gurugram'
+where pno = 1007;
+
+update participant
+set age =age+1;
+ 
+delete from participant
+where pcity='Gurugram';
+
+create table 
+(
+empno number(10),
+
+
+
+
+
+select*from emp;
+merge into emp e1
+using emp e2
+on (e1.empno=e2.empno)
+when matched then 
+update set 
+e1.empcity=e2.empcity
+when not matched then
+insert values (e2.empno,e2.empname,e2.empcity)create table employee
+(
+empno number(10),
+emoname char(25),
+empcity char(25)
+);
+
+select * from employee;
+
+insert into employee values (1001 , 'Anuj' , 'Mumbai');
+insert into employee values ( 1002 , 'Anamika' , 'Delhi');
+insert into employee values ( 1003 , 'Monika' , 'Pune');
+insert into employee values ( 1004 , 'Karan' , 'Noida');
+
+insert into employee (empno , empcity) values (1005 , ' Hyderabad');
+
+create table participant 
+(
+pno number(10) constraint pk_part1 primary key,
+pname char(30) not null,
+emailid char(30) constraint uk_part_1 unique,
+pcity char(30) default 'Hyderabad',
+age number(10) constraint ck_part check(age>0),
+remarks varchar(250)
+)
+
+insert into participant values (1001 , 'Vinayak', 'vk@gmail.com', 'Mumbai',18,'Good Praticipant');
+insert into participant values (1002 , 'Arjun', 'a@gmail.com', 'Mumbai',18,'Good Praticipant');
+insert into participant values (1003 , 'Nandini', null, 'Delhi',19,'Good Praticipant');
+insert into participant values (1004 , 'Kushal', null, 'Delhi',19,'Good Praticipant');
+insert into participant values (1005 , 'Vikas', 'vikas@gmail.com', default,null,'Good Praticipant');
+select * from participant; 
+
+insert into participant ( pno, pname , age) values (1006,'Madhuri',20);
+
+select * from participant; 
+
+create table participant_skillset
+(
+sn number(10) primary key,
+pno number(10) constraint fk_pss1 references participant(pno),
+skill varchar(50),
+expInYears number(10)
+);
+
+insert into participant_skillset values (1, 1001 , 'Java',2);
+insert into participant_skillset values (2, null , 'SQL',1);
+
+alter table participant_skillset
+add efficiencylevel varchar(30);
+
+alter table participant_skillset 
+modify efficiencylevel number(10);
+
+desc participant_skillset;
+
+alter table participant_skillset 
+drop column efficiencylevel;
+
+alter table participant 
+drop constraint pk_part;
+
+alter table participant 
+drop constraint ck_part2 check(age>0);
+
+alter table participant 
+add constraint pk_1 primary key(pno);
+
+alter table participant_skillset
+rename expInYears to expYr;
+
+
+select*from employee 
+where empcity = 'Delhi';
+
+select*from participant
+where lower(pcity) != 'hyderabad';
+
+select pname , pcity , age from participant
+where age <20;
+
+insert into participant values (1008,'sagar', 'sagaryahoo.co.in','Noida',26,'regular');
+insert into participant values (1009,'Vikas', 'VK@hotmail.com','Bangalore',30,'Active participant');
+
+select *from participant
+where age between 20 and 30;
+
+select pname , pcity from participant
+where  lower(pcity) in ('mumbai','bangalore','noida');
+
+select pname ,pcity from participant
+where pname like '_a%';
+
+select pname,pcity from participant
+where age is null;
+
+update participant
+set age = 29
+where pno =1009;
+
+update participant 
+set age =25 , pcity ='Gurugram'
+where pno = 1007;
+
+update participant
+set age =age+1;
+ 
+delete from participantcreate table employee
+(
+empno number(10),
+emoname char(25),
+empcity char(25)
+);
+
+select * from employee;
+
+insert into employee values (1001 , 'Anuj' , 'Mumbai');
+insert into employee values ( 1002 , 'Anamika' , 'Delhi');
+insert into employee values ( 1003 , 'Monika' , 'Pune');
+insert into employee values ( 1004 , 'Karan' , 'Noida');
+
+insert into employee (empno , empcity) values (1005 , ' Hyderabad');
+
+create table participant 
+(
+pno number(10) constraint pk_part1 primary key,
+pname char(30) not null,
+emailid char(30) constraint uk_part_1 unique,
+pcity char(30) default 'Hyderabad',
+age number(10) constraint ck_part check(age>0),
+remarks varchar(250)
+)
+
+insert into participant values (1001 , 'Vinayak', 'vk@gmail.com', 'Mumbai',18,'Good Praticipant');
+insert into participant values (1002 , 'Arjun', 'a@gmail.com', 'Mumbai',18,'Good Praticipant');
+insert into participant values (1003 , 'Nandini', null, 'Delhi',19,'Good Praticipant');
+insert into participant values (1004 , 'Kushal', null, 'Delhi',19,'Good Praticipant');
+insert into participant values (1005 , 'Vikas', 'vikas@gmail.com', default,null,'Good Praticipant');
+select * from participant; 
+
+insert into participant ( pno, pname , age) values (1006,'Madhuri',20);
+
+select * from participant; 
+
+create table participant_skillset
+(
+sn number(10) primary key,
+pno number(10) constraint fk_pss1 references participant(pno),
+skill varchar(50),
+expInYears number(10)
+);
+
+insert into participant_skillset values (1, 1001 , 'Java',2);
+insert into participant_skillset values (2, null , 'SQL',1);
+
+alter table participant_skillset
+add efficiencylevel varchar(30);
+
+alter table participant_skillset 
+modify efficiencylevel number(10);
+
+desc participant_skillset;
+
+alter table participant_skillset 
+drop column efficiencylevel;
+
+alter table participant 
+drop constraint pk_part;
+
+alter table participant 
+drop constraint ck_part2 check(age>0);
+
+alter table participant 
+add constraint pk_1 primary key(pno);
+
+alter table participant_skillset
+rename expInYears to expYr;
+
+
+select*from employee 
+where empcity = 'Delhi';
+
+select*from participant
+where lower(pcity) != 'hyderabad';
+
+select pname , pcity , age from participant
+where age <20;
+
+insert into participant values (1008,'sagar', 'sagaryahoo.co.in','Noida',26,'regular');
+insert into participant values (1009,'Vikas', 'VK@hotmail.com','Bangalore',30,'Active participant');
+
+select *from participant
+where age between 20 and 30;
+
+select pname , pcity from participant
+where  lower(pcity) in ('mumbai','bangalore','noida');
+
+select pname ,pcity from participant
+where pname like '_a%';
+
+select pname,pcity from participant
+where age is null;
+
+update participant
+set age = 29
+where pno =1009;
+
+update participant 
+set age =25 , pcity ='Gurugram'
+where pno = 1007;
+
+update participant
+set age =age+1;
+ 
+delete from participant
+where pcity='Gurugram';
+
+create table 
+(
+empno number(10),
+
+
+
+
+
+select*from emp;
+merge into emp e1
+using emp e2
+on (e1.empno=e2.empno)
+when matched then 
+update set 
+e1.empcity=e2.empcity
+when not matched then
+insert values (e2.empno,e2.empname,e2.empcity)
+where pcity='Gurugram';
+
+create table emp 
+(
+empno number(10),
+empname char(20)
+) 
+
+alter table emp 
+modify empname varchar(25); 
+
+insert into emp(empno, empname) 
+select empno, empname from employee where empcity = 'Hyderabad';
+
+select * from emp
+
+alter table emp 
+add empcity char(25); 
+
+merge into emp e1
+using employee e2 
+on (e1.empno = e2.empno)
+when matched then 
+    update set 
+    e1.empcity = e2.empcity
+when not matched then 
+    insert values(e2.empno, e2.empname, e2.empcity) 
+    
+select * from emp;
+
+insert into emp values (1006,'alison','noida');
+
+savepoint s1
+
+update emp
+set empname ='Hector'
+where empno=1005;
+
+rollback to savepoint s1 ;
+
+create user user1
+identified by 123456;
+
+alter user user1
+identified by 123456;
+
+grant  create table ,create view, create session
+to user1;
+create role tabRole
+
+grant create table , create view to tabRole
+grant tabRole to user1 ,user2,user3;
+
+grant select,alter,
+on emp
+to user1;
+
+grant update (empid,empname)
+on employee
+to demo,manager;
+
+grant select ,insert
+on departments 
+to demo,manager
+with grant option;
+
+grant select 
+on alice.departments  ##department table is owned by alice##
+to public;
+
+revoke select 
+on employee
+from user1;
+
+select*from participant
+
+create view vw_part_gen
+as
+select pno,pname,emailid,pcity
+from participant
+where pcity='New Delhi'
+
+select * from vw_part_gen;
+
+update vw_part_gen
+set emailid='k@gmail.com'
+where pno =1004;
+
+replace view vw_part_gen
+as
+select pno,pname,emailid,pcity
+from participant
+where pcity='New Delhi' or pcity='Mumbai';
+
+create view vw_part_gen
+as
+select pno,pname,emailid,pcity
+from participant
+where pcity='New Delhi'
+with check option constraint ck_age; ##to accept data only in a particular range##
+
+
+create view vw_part_gen
+as
+select pno,pname,emailid,pcity
+from participant
+where pcity='New Delhi'
+with read only;  ##allows  only to read##
+
+##sequences##
+create sequence seq_emp
+increment by 1
+start with 1
+max value 9999
+min value 0
+nocycle
+nocache;
+
+select *from employee
+insert into employee values (seq_emp.NEXTVAL,'Abhinay','abhi@gmail.com');
+##(change name and mail id in same command without changing the command)##
+
+alter sequence seq_emp
+increment by 10;
+insert into employee values (seq_emp.NEXTVAL,'Abhinay','abhi@gmail.com');
+
+select seq_emp.nextval, seq_emp.currval from dual;
+
+drop sequence seq_emp;
+
+create synonym e1 for employee;
+
+select *from e1;
+
+drop synonym e1;
+
+select * from user_tables
+where lower(table_name) ='employee';
+
+##functions##
+select count(remarks) as Total Records from participant;
+select sum (age) as AGE , avg(avg , nax(age), min(age)as avg from participnat;
+
+
+select * from particioant 
+order by pcity desc;
+
+
+select pcity , max (age) as" Max Age", count* "total participant from participants
+group by pcity;
+
+select distinct from pcity from participant;
+select count* fro  participant where pcity=Mumbai;
+
+
+select pcity , max (age) as" Max Age", count* "total participant" from participant 
+group by pcity
+having count (*) >=2
+
+##this sequence must follow##
+select 
+from 
+where 
+group by
+having 
+order
+
+select count (distinct pcity)  from participant
+
+select count* from e.employees 
+where e.age > (select avg(age) from employee  )
+
+##joins##
+inner join based upon matching data
+natural join columns with same name will appear only once(data type of joining column should be same ).
+using clause joins the 2 same column with different datatype .more than 1 common column then also using clause used.
+self join combining data from same table 
+
+select * from employee natural join dept;
+
+select *from emp join dept using (deptno);
+
+select  deptno , e.empno, e.ename,d.dname from emp e join dept d using (deptno)
+where deptno in (10;20);
+
+select  d.deptno , e.empno, e.ename,d.dname from emp e join dept d ((##inner join##))
+on e.deptno = d.deptno
+where sal >=2000;
+
+select e.empno"EMPNO", e.ename"EMP NAME" , m.empno"managerno",m.ename"Manager Name"  
+from emp e join emp m
+on m.empno= e.mgr
+where e.sal> m.sal;
+
+##outer join##
+select p.pno, p.pname, s.skill, s.expyr from participant p
+left outer join participant skillset s
+on p.pno=s.pno;
+
+
+ON e.salary
+between j.lowest salary and j.highest salary;
+
+##subqueries##
+
+select ename from emp 
+where salary= ( select min(sal)from emp);
+
+select ename,sal, (select avg(sal) from emp)"AVG SAL" from emp 
+where sal>= (select 
+
+
+where salary>= ( select avg(sal)from emp);
+
+select count (*) , dept no, avg(sal) from emp o
+where sal >(select avg(sal) from emp i where o.deptno = i.deptno group by i.deptno)
+group by deptNo
+
+##UNION ALL##
+select ename from emp
+union all
+select empname from employee
+
+insert into employee (empname) values ('MARTIN');
+insert into employee (empname) values ('SMITH');
+
+select ename from emp
+Minus
+select empname from employee;
+
+##row function##
+
+select ename ,job from EMP
+##CHARACTER FUNCTIONS##
+LOWWER
+UPPER
+INITCAP
+CONCAT
+SUBSTR
+INSTR- PRESENCE OF ONE STRING IN ANOTHER
+TRIM - USED TO TRIM 
+LTRIM 
+RTRIM
+ASCII
+######
+
+SELECT LOWER (ENAME), UPPER(JOB), INITCAP() FROM EMP;
+
+SELECT INITCAP(DNAME) FROM DEPT;
+
+SELECT CONCAT(CONCAT(ENAME,''),JOB)"NAME JOB" , ENAME||''||JOB FROM EMP;##(TO MERGE );
+
+SUBSTR (STRING,START,NOOFALPHABET)
+SELECT SUBSTR(ENAME,1,4) FROM EMP; ##ENAME START FROM 1ST LETTER AND GOES TILL 4TH LETTER)
+
+SELECT SUBSTR('HYDERABAD',2,5) FROM DUAL
+
+SELECT TRIM('    HELLO    ')"COL" FROM DUAL;
+SELECT RTIM('    HELLO    ')"COL" FROM DUAL;
+
+SELECT TRIM('H' FROM 'HELLO') FROM DUAL;
+
+SELECT REPLACE ('HELLO,'H','F') FROM DUAL;
+
+SELECT LPAD('HELLO',10,'*') FROM DUAL;
+
+
+SELECT ROUND(25.52,0), ROUND(25.52,1), ROUND(25.42,-1) FROM DUAL ;
+
+SELECT TRUNC(25.52,0), TRUNC(25.52,1),TRUNC(25.42,-1) FROM DUAL;
+
+SELECT MOD(20,3) FROM DUAL;##REMAINDER##
+
+SELECT ROUND(AVG(SAL),2) FROM EMP;
+
+SELECT CONCAT(SUBSTR('ABCDEFGH',1,3), SUBSTR('ABCDEFGH', 5)) FROM DUAL;
+
+SELECT MONTH_BETWEEN ('01-FEB-2022','05-JUL-2022') FROM DUAL;
+
+SELECT MONTH_BETWEEN (SYSDATE,HIREDATE)/12 "NO OF YRS" FROM DUAL;
+
+SELECT ADD_MONTHS (SYSDATE,4) FROM DUAL;
+
+SELECT NEXT_DAY(SYSDATE,'FRIDAY') FROM DUAL;
+
+SELECT ROUND (SYSDATE,'MONTH'),TRUNC(SYSDATE,'MONTH') FROM DUAL;
+
+SELECT ROUND (SYSDATE,'YEAR'),TRUNC(SYSDATE,'YEAR') FROM DUAL;
+
+SELECT TO_CHAR (9898,'999999')"CHAR" FROM DUAL;
+
+SELECT TO_CHAR(SYSDATE,'YEAR') FROM DUAL;
+
+SELECT TO_CHAR (9898,'$999999')"CHAR" FROM DUAL;
+
+SELECT TO_NUMBER('9999','99999') FROM DUAL;
+
+SELECT TO_DATE('01-SEP-2022', 'DD-MONTH-YYYY') FROM DUAL;
+
+
+
+
+##06 JULY 2022##
+
+select * from emp;
+select empno,ename,sal,comm,sal+nvl(comm,0)"total sal" from emp;
+
+select ename,empno,deptno,sal
+    case deptno when 10 then sal*1.20
+                when 20 then sal*1.18
+                when 30 then sal*1.15
+    else sal*1.10 end "HIKE"
+from emp;
+
+##regular expression##
+
+select ename  from emp
+where regexp_like (ename,'j');
+
+select ename, regexp_replace(ename,'e','i') from emp ##replace e with i##
+where regexp_like (ename,'j');
+
+
+select ename  from emp
+where regexp_like (ename,'^j');
+
+select ename  from emp
+where regexp_like (ename,'j');
+
+##INDEX##
+create index indexname on table (column)
+create index idx_emp_job on emp (job);
+
+select *from emp
+where job = 'CLERK';
+
+DROP index idx_emp_job;
+
+create index idx_emp_ename on emp (upper(ename));
+
+select * from emp
+where upper(ename) = 'KING';
+
+##INDEXES ARE USED TO INCREASE THE PERFORMANCE##
+
+##OPTIMIZER MODES IN ORACLE##
+
+FOR PERFORMANCE OPTIMISATION UE MERGE IF PRESENT UPDATE IF NOT PRESENT INSERT
+
+WITH TEMPQRY
+AS (select avg(sal) avrg from emp)
+select sal,avrg from emp cross join tempqry1  OR select sal, avrg from emp , tempqry1 ( comma can be used in place of cross joins same meaning)
+
+##GROUP BY MISCELLANEOUS##ONLY FOR ORACLE##
+##GROUP BY ROLLUP##
+SELECT 
+FROM 
+GROUP BY ROLL UP ( ORDERED LIST OF GROUPING COLUMNS )
+
+
+SELECT DEPTNO, JOB, SUM(SAL)"TOT SAL" FROM                   (ROLLUP IS 2-D AND CUBE IS 3-D)
+GROUP BY ROLLUP (DEPTNO, JOB);
+
+##GROUP BY CUBE##
+
+SELECT DEPTNO, JOB, SUM(SAL)"TOT SAL" FROM EMP ( TO GET ALL POSSIBLE GROUPINGS)
+GROUP BY CUBE (DEPTNO, JOB);
+
+##GROUPING SET##
+
+SELECT 
+FROM 
+GROUP BY GROUPING SETS 
+
+SELECT NVL(DEPTNO,0) , NVL(JOB,0) ,SUM(SAL)"TOTAL" FROM EMP
+GROUP BY GROUPING SETS ((DEPTNO, JOB),JOB);
+
+##GROUPING##
+
+SELECT GROUPING (JOB_iD),DEPARTMENT_ID,JOB_ID,SUM(SAL)
+FROM EMPLOYEES WHERE DEPARTMENT_ID IN(60,50,100)
+GROUP BY CUBE (DEPARTMENT _ID,JOB_ID)
+GROUP BY ROLLUP(DEPT_ID,JOB_ID)
+GROUP BY GROUPING SETS (
+ORDER BY DEPARTMENT_ID ,JOB_ID;
+
+## hierarchial ##
+
+##connect by prior##
+
+SELECT  ENAME , empno,mgr
+from emp
+where deptno =10
+start with empno = mgr
+connect by prior empno=mgr
+
+##analytical functions##
+
+SELECT ENAME , empno, deptno, count(*)
+over(partition by dept no) emp_count
+from emp
+order by emp_count;
+
+select ename , empno, deptno
+count(*) over partition by deptno)emp_count
+from emp
+order by 4;
+
+@#to check what is rank ##
+
+select rank(20,7566)
+within group (order by deptno, empno)
+from emp
+
+select deptno, empno
+from emp
+order by deptno,empno;
+
+select *from emp order by sal
+
+select rank (3000)
+within group (order by sal)"DENSE RANK"
+from emp
+
+##row number##
+select emp no ,ename, deptno, sal
+from (
+select empno,ename,deptno,sal,
+row_number () over(partion by deptno order by sal desc) rn
+from emp order by rn
+)
+where rn =1;
+
+##DICTIONARY##
+
+Select *from dict 
+order by table_name;
+
+select*from all_tables;
+
+select*from user_tables;
+
+select*from user_cons_columns;    (constraint details )
+
+select* from user_tab_columns
+where table_name ='EMP';          (columns of all tables)
+
+SELECT*FROM USER_SEQUENCES         ( TO FIND SEQUENCES WHICH I CREATED)
+
+
+## with check option view##
+create view vw_employee_city_mum
+as (select* from employee where empcity= 'mumbai' or )
+with check option 
+
+select *from vw_employee_city_mum
+
+insert into vw_employee_city_mum values (1025,'krish', 'patna')  (cannot insert value because of with check option  for any other city 
+                                                                   but only mumbai )
+
+
+##insert into multiple tables##
+##table ceated and data inserted both at a time##
+
+create table emp_dept10 as( select* from emp where deptno=10)(table backup command)
+
+create table emp_dept20 a (select * from emp where deptno =20)
+create table emp_othdept as ( select* from emp)
+
+insert first
+ when deptno =10 then into emp_dept10
+ when deptno=20 then into emp_dept20
+ when deptno=30 or deptno is null then into emp_oth_dept 
+ 
+select * from emp_dept10
+
+select*from emp_dept20
+
+select*from emp_oth_dept
+##DIRECTORY##
+
+CREATE DIRECTORY  oracle_dir2
+as 'D:\datadir';
+
+###steps to create and use an external table###
+
+ORGANIZATION EXTERNAL (
+TYPE ORACLE_LOADER 
+DEFAULT DIRECTORY ORACLE_dir2
+access parameters(
+records delimited by newLine 
+fields terminated by ','
+missing field values are null
+)
+location( 'records.csv')
+)reject limit unlimited;
+####
+
+CREATE OR REPLACE FUNCTION GET_DEPT_SAL
+(
+DEPTNO IN NUMBER
+)RETURN NUMBER
+IS TOTAL NUMBER ;
+BEGIN 
+SELECT SUM (SAL) INTO TOTAL FROM EMP WHERE DEPTNO=DEPTNO;
+RETURN TOTAL ;
+END GET_DEPT_SAL;
+SELECT GET_DEPT_SAL(20) FROM DUAL
+
+##TEMPORARY TABLE##
+
+CREATE GLOBAL TEMPORARY TABLE TAB1(
+ID INT,
+DESCRIPTION VARCHAR(20)
+) ON COMMIT DELETE ROWS;
+
+INSERT INTO TAB1 VALUES(13,'TEMP DATA');
+
+SELECT*FROM TAB1;
+
+COMMIT;
+
+SELECT *FROM  TAB1;
+
+##TO CREATE PRIVATE TEMPORARY TABLE WE HAVE TO WRITE ORA$PTT##
+CREATE PRIVATE TEMPORARY TABLE ORA$PTT_1
+(
+ID INT,
+DESCRIPTION VARCHAR(20)
+)ON COMMIT DROP DEFINITION
+INSERT INTO ORA$PTT_1 VALUES(123,'PVT TEMP DATA');
+
+SELECT* FROM ORA$PTT_1
+
+
+
+
+
